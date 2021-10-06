@@ -12,3 +12,5 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Imports: 
     magrittr
+URL: https://github.com/curso-r/munifacil
+BugReports: https://github.com/curso-r/munifacil/issues
