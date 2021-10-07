@@ -1,5 +1,7 @@
 ---
 output: github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -26,27 +28,35 @@ O pacote munifacil serve para juntar municipios facilmente!
 
 library(munifacil)
 
-tabela_arrumacao <- munifacil::depara_muni_codigo
+arquivo <- system.file("extdata/exemplo.xlsx", package = "munifacil")
 
-sua_base %>% 
-  limpa_coluna_muni(sua_coluna_muni) %>% 
-  # isso aqui vai criar no seu df
-  # uma coluna "muni_join"
-  limpa_coluna_uf(sua_coluna_uf) %>% 
+sua_base <- readxl::read_excel(arquivo) %>% 
+  janitor::clean_names() %>% 
+  dplyr::select(
+    municipio = 1, 
+    uf = 3,
+    ibge = 2
+  ) %>% 
+  dplyr::distinct(municipio, .keep_all = TRUE)
+
+resultado <- sua_base %>% 
+  limpar_colunas(municipio, uf) %>% 
   # cria uma coluna "uf_join"
-  inclui_codigo_ibge(depara = tabela_arrumacao)
-  # criar uma coluna "codigo_ibge" dando join
-  # com um base interna do pacote que tem
-  # os codigos do ibge e os nomes candidatos
-  # (muni join)
-  #
-  # DESAFIO:
-  # pimenta nivel 1 No final seria bom se essa função soltasse um
-  # report.
-  # 
-  # pimenta nivel michael douglas Desse report seria bom
-  # se o pacote desse um jeito
-  # de resolver o problema.
-  
+  incluir_codigo_ibge()
+
+resultado %>% 
+  dplyr::filter(is.na(id_municipio))
+
+# deu certo?
+resultado %>% 
+  dplyr::count(ibge == id_municipio)
+
+# deu!
 ```
 
+
+## Tarefas
+
+- [ ] Escrever uma solução para fazer correções manuais
+- [ ] Facilitar o trabalho de adicionar opções na base `depara_muni_codigo`
+- [ ] Implementar uma opção de fuzzy join
