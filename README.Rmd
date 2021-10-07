@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 
 O pacote munifacil serve para juntar municipios facilmente!
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 
 #remotes::install_github("curso-r/munifacil")
 
