@@ -6,7 +6,7 @@
 #'
 #' @export
 incluir_codigo_ibge <- function (data_set,
-                                 tabela_referencia = munifacil::depara_muni_codigo,
+                                 tabela_referencia = munifacil::depara_muni_codigo(),
                                  diagnostico = TRUE) {
 
   resultado <- data_set %>%
