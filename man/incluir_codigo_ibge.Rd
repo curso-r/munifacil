@@ -6,7 +6,7 @@
 \usage{
 incluir_codigo_ibge(
   data_set,
-  tabela_referencia = munifacil::depara_muni_codigo,
+  tabela_referencia = munifacil::depara_muni_codigo(),
   diagnostico = TRUE
 )
 }

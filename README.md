@@ -45,8 +45,8 @@ resultado %>%
 #>  8 SAMAMBAIA          DF    53001… samambaia DF      <NA>         NA     NA     
 #>  9 SÃO SEBASTIÃO      DF    53001… sao seba… DF      <NA>         NA     NA     
 #> 10 -                  -     -      -         -       <NA>         NA     NA     
-#> # … with 3 more variables: existia_1991 <int>, existia_2000 <int>,
-#> #   existia_2010 <int>
+#> # … with 3 more variables: existia_1991 <lgl>, existia_2000 <lgl>,
+#> #   existia_2010 <lgl>
 
 # deu certo?
 resultado %>% 
