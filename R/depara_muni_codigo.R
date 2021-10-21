@@ -15,8 +15,6 @@
 #' \item{existia_2010}{municipio existia em 2010?}
 #' }
 #' @export
-#'
-#' @examples depara_muni_codigo()
 depara_muni_codigo <- function() {
   path <- system.file("depara_muni_codigo.csv",
                       package = "munifacil")
