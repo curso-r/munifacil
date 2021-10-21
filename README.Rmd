@@ -28,10 +28,9 @@ O pacote munifacil serve para juntar municipios facilmente!
 
 library(munifacil)
 
-arquivo <- system.file("extdata/exemplo.xlsx", package = "munifacil")
+arquivo <- system.file("extdata/exemplo.csv", package = "munifacil")
 
-sua_base <- readxl::read_excel(arquivo) %>% 
-  janitor::clean_names() %>% 
+sua_base <- readr::read_csv(arquivo) %>% 
   dplyr::select(
     municipio = 1, 
     uf = 3,
