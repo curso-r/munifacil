@@ -13,16 +13,23 @@ O pacote munifacil serve para juntar municipios facilmente!
 
 library(munifacil)
 
-arquivo <- system.file("extdata/exemplo.xlsx", package = "munifacil")
+arquivo <- system.file("extdata/exemplo.csv", package = "munifacil")
 
-sua_base <- readxl::read_excel(arquivo) %>% 
-  janitor::clean_names() %>% 
+sua_base <- readr::read_csv(arquivo) %>% 
   dplyr::select(
     municipio = 1, 
     uf = 3,
     ibge = 2
   ) %>% 
   dplyr::distinct(municipio, .keep_all = TRUE)
+#> Rows: 6786 Columns: 6
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: ","
+#> chr (5): Cidade abrangida, Código do IBGE - cidade abrangida, Cidade abrangi...
+#> dbl (1): Indicador Valor
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
 resultado <- sua_base %>% 
   limpar_colunas(municipio, uf) %>% 
