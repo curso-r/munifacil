@@ -23,6 +23,3 @@ Um data frame com 8 colunas
 Uma base de dados manual com varias opções de nomes
 de municipios para dar join
 }
-\examples{
-depara_muni_codigo()
-}
