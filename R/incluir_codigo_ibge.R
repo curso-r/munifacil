@@ -27,10 +27,19 @@ diagnostico_join <- function(resultado) {
   quantidade_na <- sum(is.na(resultado[["id_municipio"]]))
   pct_na <- scales::percent(mean(is.na(resultado[["id_municipio"]])))
 
+
+
   if (quantidade_na == 0) {
     usethis::ui_done("Uhul! Deu certo!")
   } else {
-    usethis::ui_todo("Ainda faltam {quantidade_na} ({pct_na}) casos...")
+    usethis::ui_todo("Ainda faltam {quantidade_na} ({pct_na}) casos... São eles:")
+
+    resultado |>
+      dplyr::filter(is.na(id_municipio)) |>
+      dplyr::select(uf, municipio) |>
+      tidyr::unite(c(uf, municipio), col = "UF - Municipio" , sep = " - ") |>
+      dplyr::pull() |>
+      usethis::ui_todo()
   }
 
 }

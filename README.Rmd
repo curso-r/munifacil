@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 # munifacil
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/curso-r/munifacil/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/curso-r/munifacil/actions/workflows/check-standard.yaml)
+
 <!-- badges: end -->
 
 O pacote munifacil serve para juntar municipios facilmente!
