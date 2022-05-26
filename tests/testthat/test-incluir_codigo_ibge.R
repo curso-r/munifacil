@@ -19,16 +19,16 @@ test_that("incluir_codigo_ibge() works", {
     # cria uma coluna "uf_join"
     incluir_codigo_ibge()
 
-
-
-  deu_certo <- resultado %>%
-    dplyr::count(ibge == id_municipio) %>%
+  deu_certo <- resultado |>
+    dplyr::mutate(ibge = stringr::str_sub(ibge, 1, 7)) |>
+    dplyr::count(ibge == id_municipio) |>
     dplyr::rename("ibge_igual_id_municipio" = 1)
 
   # espero que `deu_certo` seja uma tibble
   testthat::expect_s3_class(deu_certo, class = "tbl_df")
+
   # espero que `deu_certo` tenha 2 linhas e 2 colunas
-  testthat::expect_equal(nrow(deu_certo), 2)
+  testthat::expect_equal(nrow(deu_certo), 3)
   testthat::expect_equal(ncol(deu_certo), 2)
   # pelo menos 4380 ocorrencias tem que dar certo
   deu_certo |>
