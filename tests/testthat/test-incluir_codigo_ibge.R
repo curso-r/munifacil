@@ -31,6 +31,9 @@ test_that("incluir_codigo_ibge() works", {
   testthat::expect_equal(nrow(deu_certo), 2)
   testthat::expect_equal(ncol(deu_certo), 2)
   # pelo menos 4380 ocorrencias tem que dar certo
-  testthat::expect_gte(deu_certo$n[1], 4380)
+  deu_certo |>
+    dplyr::filter(ibge_igual_id_municipio == TRUE) |>
+    dplyr::pull(n) |>
+    testthat::expect_gte(4380)
 
 })
