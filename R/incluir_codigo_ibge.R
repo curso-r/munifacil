@@ -34,9 +34,9 @@ diagnostico_join <- function(resultado) {
 
     resultado |>
       dplyr::filter(is.na(id_municipio)) |>
-      dplyr::select(uf, municipio) |>
+      dplyr::select(muni_join, uf_join) |>
       dplyr::distinct() |>
-      tidyr::unite(c(uf, municipio), col = "UF - Municipio" , sep = " - ") |>
+      tidyr::unite(c(muni_join, uf_join), col = "UF - Municipio" , sep = " - ") |>
       dplyr::pull() |>
       as.list() |>
       purrr::map(usethis::ui_todo)
