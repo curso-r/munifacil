@@ -65,7 +65,8 @@
 <div class="section level1">
 <div class="page-header"><h1 id="munifacil">munifacil<a class="anchor" aria-label="anchor" href="#munifacil"></a>
 </h1></div>
-<!-- badges: start --><!-- badges: end --><p>O pacote munifacil serve para juntar municipios facilmente!</p>
+<!-- badges: start -->
+<!-- badges: end --><p>O pacote munifacil serve para juntar municipios facilmente!</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#remotes::install_github("curso-r/munifacil")</span>
 
@@ -93,34 +94,26 @@
   <span class="fu"><a href="reference/limpar_colunas.html">limpar_colunas</a></span><span class="op">(</span><span class="va">municipio</span>, <span class="va">uf</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
   <span class="co"># cria uma coluna "uf_join"</span>
   <span class="fu"><a href="reference/incluir_codigo_ibge.html">incluir_codigo_ibge</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; • Ainda faltam 10 (0%) casos...</span>
+<span class="co">#&gt; • Ainda faltam 1 (0%) casos...</span>
 
 <span class="va">resultado</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">id_municipio</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 10 × 11</span>
-<span class="co">#&gt;    municipio          uf    ibge   muni_join uf_join id_municipio manual atencao</span>
-<span class="co">#&gt;    &lt;chr&gt;              &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;        &lt;lgl&gt;  &lt;lgl&gt;  </span>
-<span class="co">#&gt;  1 ÁGUAS CLARAS       DF    -      aguas cl… DF      &lt;NA&gt;         NA     NA     </span>
-<span class="co">#&gt;  2 BRAZLÂNDIA         DF    53001… brazland… DF      &lt;NA&gt;         NA     NA     </span>
-<span class="co">#&gt;  3 CEILANDIA          DF    53001… ceilandia DF      &lt;NA&gt;         NA     NA     </span>
-<span class="co">#&gt;  4 GAMA               DF    53001… gama      DF      &lt;NA&gt;         NA     NA     </span>
-<span class="co">#&gt;  5 NÚCLEO BANDEIRANTE DF    53001… nucleo b… DF      &lt;NA&gt;         NA     NA     </span>
-<span class="co">#&gt;  6 PARANOÁ            DF    53001… paranoa   DF      &lt;NA&gt;         NA     NA     </span>
-<span class="co">#&gt;  7 RIACHO FUNDO       DF    53001… riacho f… DF      &lt;NA&gt;         NA     NA     </span>
-<span class="co">#&gt;  8 SAMAMBAIA          DF    53001… samambaia DF      &lt;NA&gt;         NA     NA     </span>
-<span class="co">#&gt;  9 SÃO SEBASTIÃO      DF    53001… sao seba… DF      &lt;NA&gt;         NA     NA     </span>
-<span class="co">#&gt; 10 -                  -     -      -         -       &lt;NA&gt;         NA     NA     </span>
+<span class="co">#&gt; # A tibble: 1 × 11</span>
+<span class="co">#&gt;   municipio uf    ibge  muni_join uf_join id_municipio manual atencao</span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;        &lt;lgl&gt;  &lt;lgl&gt;  </span>
+<span class="co">#&gt; 1 -         -     -     -         -       &lt;NA&gt;         NA     NA     </span>
 <span class="co">#&gt; # … with 3 more variables: existia_1991 &lt;lgl&gt;, existia_2000 &lt;lgl&gt;,</span>
 <span class="co">#&gt; #   existia_2010 &lt;lgl&gt;</span>
 
 <span class="co"># deu certo?</span>
 <span class="va">resultado</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">ibge</span> <span class="op">==</span> <span class="va">id_municipio</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 2 × 2</span>
+<span class="co">#&gt; # A tibble: 3 × 2</span>
 <span class="co">#&gt;   `ibge == id_municipio`     n</span>
 <span class="co">#&gt;   &lt;lgl&gt;                  &lt;int&gt;</span>
-<span class="co">#&gt; 1 TRUE                    4380</span>
-<span class="co">#&gt; 2 NA                        10</span>
+<span class="co">#&gt; 1 FALSE                      9</span>
+<span class="co">#&gt; 2 TRUE                    4380</span>
+<span class="co">#&gt; 3 NA                         1</span>
 
 <span class="co"># deu!</span></code></pre></div>
 <div class="section level2">
@@ -171,7 +164,12 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/curso-r/munifacil/actions/workflows/check-standard.yaml" class="external-link"><img src="https://github.com/curso-r/munifacil/actions/workflows/check-standard.yaml/badge.svg" alt="R-CMD-check"></a></li>
+</ul>
+</div>
 
   </div>
 </div>
