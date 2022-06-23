@@ -4,15 +4,25 @@
 \alias{limpar_colunas}
 \title{Cria coluna limpa a partir do nome bruto dos municipios}
 \usage{
-limpar_colunas(data_set, col_muni, col_uf)
+limpar_colunas(data_set, col_muni, col_uf, default_muni, default_uf)
 }
 \arguments{
 \item{data_set}{base de dados}
 
-\item{col_muni}{coluna de municipio a ser arrumada}
+\item{col_muni}{nome da coluna de municipio a ser arrumada, sem aspas.}
 
-\item{col_uf}{coluna de municipio a ser arrumada}
+\item{col_uf}{nome da coluna de UF a ser arrumada, sem aspas.}
+
+\item{default_muni}{(opcional) String. Ao invés de passar o nome de uma coluna de entrada, você pode preencher a coluna de saída com uma string fixa.}
+
+\item{default_uf}{(opcional)  String. Ao invés de passar o nome de uma coluna de entrada, você pode preencher a coluna de saída com uma string fixa.}
+}
+\value{
+Esta funcao retorna a base data_set acrescida das colunas "muni_join" e "uf_join". Essas colunas serao usadas na funcao incluir_codigo_ibge.
 }
 \description{
 Cria coluna limpa a partir do nome bruto dos municipios
+}
+\details{
+Por padrao, o pacote espera receber os nomes das colunas nao em formato string, ou seja, sem aspas. Strings podem ser fornecidas para preencher as colunas de saida com valores fixo, o seu valor sera utilizado para preencher as colunas novas.
 }
