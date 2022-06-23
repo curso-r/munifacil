@@ -50,7 +50,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">limpar_colunas</span><span class="op">(</span><span class="va">data_set</span>, <span class="va">col_muni</span>, <span class="va">col_uf</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">limpar_colunas</span><span class="op">(</span><span class="va">data_set</span>, <span class="va">col_muni</span>, <span class="va">col_uf</span>, <span class="va">default_muni</span>, <span class="va">default_uf</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -60,13 +60,31 @@
 
 
 <dt>col_muni</dt>
-<dd><p>coluna de municipio a ser arrumada</p></dd>
+<dd><p>nome da coluna de municipio a ser arrumada, sem aspas.</p></dd>
 
 
 <dt>col_uf</dt>
-<dd><p>coluna de municipio a ser arrumada</p></dd>
+<dd><p>nome da coluna de UF a ser arrumada, sem aspas.</p></dd>
+
+
+<dt>default_muni</dt>
+<dd><p>(opcional) String. Ao invés de passar o nome de uma coluna de entrada, você pode preencher a coluna de saída com uma string fixa.</p></dd>
+
+
+<dt>default_uf</dt>
+<dd><p>(opcional)  String. Ao invés de passar o nome de uma coluna de entrada, você pode preencher a coluna de saída com uma string fixa.</p></dd>
 
 </dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    
+
+<p>Esta funcao retorna a base data_set acrescida das colunas "muni_join" e "uf_join". Essas colunas serao usadas na funcao incluir_codigo_ibge.</p>
+    </div>
+    <div id="details">
+    <h2>Details</h2>
+    <p>Por padrao, o pacote espera receber os nomes das colunas nao em formato string, ou seja, sem aspas. Strings podem ser fornecidas para preencher as colunas de saida com valores fixo, o seu valor sera utilizado para preencher as colunas novas.</p>
+    </div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
