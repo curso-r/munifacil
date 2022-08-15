@@ -68,54 +68,54 @@
 <!-- badges: start -->
 <!-- badges: end --><p>O pacote munifacil serve para juntar municipios facilmente!</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#remotes::install_github("curso-r/munifacil")</span>
-
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/curso-r/munifacil" class="external-link">munifacil</a></span><span class="op">)</span>
-
-<span class="va">arquivo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/exemplo.csv"</span>, package <span class="op">=</span> <span class="st">"munifacil"</span><span class="op">)</span>
-
-<span class="va">sua_base</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="va">arquivo</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span>
-    municipio <span class="op">=</span> <span class="fl">1</span>, 
-    uf <span class="op">=</span> <span class="fl">3</span>,
-    ibge <span class="op">=</span> <span class="fl">2</span>
-  <span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">municipio</span>, .keep_all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 6786 Columns: 6</span>
-<span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span>
-<span class="co">#&gt; Delimiter: ","</span>
-<span class="co">#&gt; chr (5): Cidade abrangida, Código do IBGE - cidade abrangida, Cidade abrangi...</span>
-<span class="co">#&gt; dbl (1): Indicador Valor</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span>
-<span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span>
-
-<span class="va">resultado</span> <span class="op">&lt;-</span> <span class="va">sua_base</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="reference/limpar_colunas.html">limpar_colunas</a></span><span class="op">(</span><span class="va">municipio</span>, <span class="va">uf</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
-  <span class="co"># cria uma coluna "uf_join"</span>
-  <span class="fu"><a href="reference/incluir_codigo_ibge.html">incluir_codigo_ibge</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; • Ainda faltam 1 (0%) casos...</span>
-
-<span class="va">resultado</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">id_municipio</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 1 × 11</span>
-<span class="co">#&gt;   municipio uf    ibge  muni_join uf_join id_municipio manual atencao</span>
-<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;        &lt;lgl&gt;  &lt;lgl&gt;  </span>
-<span class="co">#&gt; 1 -         -     -     -         -       &lt;NA&gt;         NA     NA     </span>
-<span class="co">#&gt; # … with 3 more variables: existia_1991 &lt;lgl&gt;, existia_2000 &lt;lgl&gt;,</span>
-<span class="co">#&gt; #   existia_2010 &lt;lgl&gt;</span>
-
-<span class="co"># deu certo?</span>
-<span class="va">resultado</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">ibge</span> <span class="op">==</span> <span class="va">id_municipio</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 3 × 2</span>
-<span class="co">#&gt;   `ibge == id_municipio`     n</span>
-<span class="co">#&gt;   &lt;lgl&gt;                  &lt;int&gt;</span>
-<span class="co">#&gt; 1 FALSE                      9</span>
-<span class="co">#&gt; 2 TRUE                    4380</span>
-<span class="co">#&gt; 3 NA                         1</span>
-
-<span class="co"># deu!</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#remotes::install_github("curso-r/munifacil")</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/curso-r/munifacil" class="external-link">munifacil</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">arquivo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/exemplo.csv"</span>, package <span class="op">=</span> <span class="st">"munifacil"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">sua_base</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="va">arquivo</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span></span>
+<span>    municipio <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>    uf <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>    ibge <span class="op">=</span> <span class="fl">2</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">municipio</span>, .keep_all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 6786 Columns: 6</span></span>
+<span><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
+<span><span class="co">#&gt; Delimiter: ","</span></span>
+<span><span class="co">#&gt; chr (5): Cidade abrangida, Código do IBGE - cidade abrangida, Cidade abrangi...</span></span>
+<span><span class="co">#&gt; dbl (1): Indicador Valor</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
+<span><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
+<span></span>
+<span><span class="va">resultado</span> <span class="op">&lt;-</span> <span class="va">sua_base</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="reference/limpar_colunas.html">limpar_colunas</a></span><span class="op">(</span><span class="va">municipio</span>, <span class="va">uf</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="co"># cria uma coluna "uf_join"</span></span>
+<span>  <span class="fu"><a href="reference/incluir_codigo_ibge.html">incluir_codigo_ibge</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; • Ainda faltam 1 (0%) casos...</span></span>
+<span></span>
+<span><span class="va">resultado</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">id_municipio</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 11</span></span>
+<span><span class="co">#&gt;   municipio uf    ibge  muni_join uf_join id_municipio manual atencao</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;        &lt;lgl&gt;  &lt;lgl&gt;  </span></span>
+<span><span class="co">#&gt; 1 -         -     -     -         -       &lt;NA&gt;         NA     NA     </span></span>
+<span><span class="co">#&gt; # … with 3 more variables: existia_1991 &lt;lgl&gt;, existia_2000 &lt;lgl&gt;,</span></span>
+<span><span class="co">#&gt; #   existia_2010 &lt;lgl&gt;</span></span>
+<span></span>
+<span><span class="co"># deu certo?</span></span>
+<span><span class="va">resultado</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">ibge</span> <span class="op">==</span> <span class="va">id_municipio</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span><span class="co">#&gt;   `ibge == id_municipio`     n</span></span>
+<span><span class="co">#&gt;   &lt;lgl&gt;                  &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 FALSE                      9</span></span>
+<span><span class="co">#&gt; 2 TRUE                    4380</span></span>
+<span><span class="co">#&gt; 3 NA                         1</span></span>
+<span></span>
+<span><span class="co"># deu!</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="tarefas">Tarefas<a class="anchor" aria-label="anchor" href="#tarefas"></a>
 </h2>
@@ -182,7 +182,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
