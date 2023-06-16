@@ -32,22 +32,22 @@ limpar_colunas <- function(data_set, col_muni, col_uf, default_muni, default_uf)
   }
 
   if(class(expr_col_uf) == "name"){
-    aux <- data_set |>
+    aux <- data_set %>%
           dplyr::mutate(
             uf_join = toupper({{col_uf}}))
   } else {
-    aux <- data_set |>
+    aux <- data_set %>%
       dplyr::mutate(
         uf_join = default_uf
       )
   }
 
   if(class(expr_col_muni) == "name"){
-    aux <- aux |>
+    aux <- aux %>%
       dplyr::mutate(
         muni_join = limpar_muni({{col_muni}}))
   } else {
-    aux <- aux |>
+    aux <- aux %>%
       dplyr::mutate(
         muni_join = default_muni)
   }

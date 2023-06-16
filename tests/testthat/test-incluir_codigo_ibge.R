@@ -19,9 +19,9 @@ test_that("incluir_codigo_ibge() works", {
     # cria uma coluna "uf_join"
     incluir_codigo_ibge()
 
-  deu_certo <- resultado |>
-    dplyr::mutate(ibge = stringr::str_sub(ibge, 1, 7)) |>
-    dplyr::count(ibge == id_municipio) |>
+  deu_certo <- resultado %>%
+    dplyr::mutate(ibge = stringr::str_sub(ibge, 1, 7)) %>%
+    dplyr::count(ibge == id_municipio) %>%
     dplyr::rename("ibge_igual_id_municipio" = 1)
 
   # espero que `deu_certo` seja uma tibble
@@ -31,9 +31,9 @@ test_that("incluir_codigo_ibge() works", {
   testthat::expect_equal(nrow(deu_certo), 3)
   testthat::expect_equal(ncol(deu_certo), 2)
   # pelo menos 4380 ocorrencias tem que dar certo
-  deu_certo |>
-    dplyr::filter(ibge_igual_id_municipio == TRUE) |>
-    dplyr::pull(n) |>
+  deu_certo %>%
+    dplyr::filter(ibge_igual_id_municipio == TRUE) %>%
+    dplyr::pull(n) %>%
     testthat::expect_gte(4380)
 
 })

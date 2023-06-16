@@ -32,13 +32,13 @@ diagnostico_join <- function(resultado) {
   } else {
     usethis::ui_todo("Ainda faltam {quantidade_na} ({pct_na}) casos... São eles:")
 
-    resultado |>
-      dplyr::filter(is.na(id_municipio)) |>
-      dplyr::select(muni_join, uf_join) |>
-      dplyr::distinct() |>
-      tidyr::unite(c(muni_join, uf_join), col = "UF - Municipio" , sep = " - ") |>
-      dplyr::pull() |>
-      as.list() |>
+    resultado %>%
+      dplyr::filter(is.na(id_municipio)) %>%
+      dplyr::select(muni_join, uf_join) %>%
+      dplyr::distinct() %>%
+      tidyr::unite(c(muni_join, uf_join), col = "UF - Municipio" , sep = " - ") %>%
+      dplyr::pull() %>%
+      as.list() %>%
       purrr::map(usethis::ui_todo)
 
   }
