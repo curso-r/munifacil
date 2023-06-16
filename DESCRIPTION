@@ -1,9 +1,12 @@
 Package: munifacil
 Title: Pacote para facilitar o join com nome de municipios
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+Authors@R: c(
+    person("Fernando", "Correa", email = "fcorrea@curso-r.com", role = c("cre", "aut")),
+    person("Julio", "Trecenti", email =  "jtrecenti@curso-r.com", role = c("aut")),
+    person("Beatriz", "Milz", email = "milz.bea@gmail.com", role = c("aut"),
+           comment = c(ORCID = "0000-0002-3064-4486")),
+    person("Curso-R", email = "contato@curso-r.com", role = c("fnd")))
 Description: O pacote munifacil tem como objetivo facilitar a união de colunas de nome de município com o respectivo código do IBGE. Isso é útil para posteriormente realizar procedimentos de join usando como chave a coluna do código do IBGE.
 License: MIT + file LICENSE
 Encoding: UTF-8
