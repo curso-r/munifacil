@@ -22,42 +22,61 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-O pacote munifacil serve para juntar municipios facilmente!
+O pacote [munifacil](https://curso-r.github.io/munifacil/) tem como objetivo facilitar a união de colunas de nome de município com o respectivo código do IBGE. Isso é útil para posteriormente realizar procedimentos de `join` usando como chave a coluna do código do IBGE (como o `dplyr::left_join()`).
+
+## Instalação
+
+Este pacote atualmente não está disponível no CRAN, podendo ser instalado através do GitHub, utilizando o código abaixo:
+
+```r
+install.packages("remotes")
+remotes::install_github("curso-r/munifacil")
+```
+
+## Exemplo de uso
 
 ```{r, eval = TRUE}
-
-#remotes::install_github("curso-r/munifacil")
-
+# Carregar o pacote munifacil
 library(munifacil)
 
+# Importar uma base de dados usada neste exemplo
 arquivo <- system.file("extdata/exemplo.csv", package = "munifacil")
+base_de_exemplo_bruta <- readr::read_csv(arquivo)
 
-sua_base <- readr::read_csv(arquivo) %>% 
-  dplyr::select(
-    municipio = 1, 
-    uf = 3,
-    ibge = 2
-  ) %>% 
-  dplyr::distinct(municipio, .keep_all = TRUE)
+# ver quais são as colunas disponíveis
+# Nessa base, temos o nome do município, a UF, e o código do IBGE que usaremos para validar posteriormente
+dplyr::glimpse(base_de_exemplo_bruta)
 
-resultado <- sua_base %>% 
-  limpar_colunas(municipio, uf) %>% 
-  # cria uma coluna "uf_join"
+# vamos limpar o nome das colunas
+base_de_exemplo <- base_de_exemplo_bruta |> 
+  janitor::clean_names() |> 
+  # buscar apenas linhas distintas segundo essas colunas
+  dplyr::distinct(cidade_abrangida, codigo_do_ibge_cidade_abrangida, cidade_abrangida_uf)
+
+
+# ver novamente a base de exemplo limpa
+dplyr::glimpse(base_de_exemplo)
+
+# Usar o munifacil
+
+resultado <- base_de_exemplo %>% 
+  # aqui é necessario indicar o nome da coluna que contém o nome das cidades, e 
+  # o nome da coluna que contém o nome das UFs
+  limpar_colunas(col_muni = cidade_abrangida, col_uf = cidade_abrangida_uf) %>% 
+  # cria uma coluna "id_municipio"
   incluir_codigo_ibge()
 
+# ver o resultado
+dplyr::glimpse(resultado)
+
+# resultados que nao receberam o id do municipio
 resultado %>% 
   dplyr::filter(is.na(id_municipio))
 
-# deu certo?
+# Verificando a quantidade de resultados corretos
 resultado %>% 
-  dplyr::count(ibge == id_municipio)
+  dplyr::count(codigo_do_ibge_cidade_abrangida == id_municipio)
 
-# deu!
 ```
 
 
-## Tarefas
-
-- [ ] Escrever uma solução para fazer correções manuais
-- [ ] Facilitar o trabalho de adicionar opções na base `depara_muni_codigo`
-- [ ] Implementar uma opção de fuzzy join

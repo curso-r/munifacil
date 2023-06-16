@@ -1,8 +1,8 @@
 #' Incluir o codigo do IBGE
 #'
 #' @param data_set base de dados arrumada, com colunas muni_join e uf_join
-#' @param tabela_referencia tabela de referência. Por padrão usa uma base interna
-#' @param diagnostico imprimir diagnóstico?
+#' @param tabela_referencia tabela de referencia. Por padrão usa uma base interna
+#' @param diagnostico imprimir diagnostico?
 #'
 #' @export
 incluir_codigo_ibge <- function (data_set,
@@ -30,7 +30,7 @@ diagnostico_join <- function(resultado) {
   if (quantidade_na == 0) {
     usethis::ui_done("Uhul! Deu certo!")
   } else {
-    usethis::ui_todo("Ainda faltam {quantidade_na} ({pct_na}) casos... São eles:")
+    usethis::ui_todo("Ainda faltam {quantidade_na} ({pct_na}) casos... Sao eles:")
 
     resultado %>%
       dplyr::filter(is.na(id_municipio)) %>%

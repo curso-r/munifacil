@@ -13,9 +13,9 @@ incluir_codigo_ibge(
 \arguments{
 \item{data_set}{base de dados arrumada, com colunas muni_join e uf_join}
 
-\item{tabela_referencia}{tabela de referência. Por padrão usa uma base interna}
+\item{tabela_referencia}{tabela de referencia. Por padrão usa uma base interna}
 
-\item{diagnostico}{imprimir diagnóstico?}
+\item{diagnostico}{imprimir diagnostico?}
 }
 \description{
 Incluir o codigo do IBGE
