@@ -5,8 +5,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/curso-r/munifacil/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/curso-r/munifacil/actions/workflows/check-standard.yaml)
-
+[![R-CMD-check](https://github.com/curso-r/munifacil/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/curso-r/munifacil/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 O pacote [munifacil](https://curso-r.github.io/munifacil/) tem como

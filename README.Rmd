@@ -18,8 +18,7 @@ knitr::opts_chunk$set(
 # munifacil
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/curso-r/munifacil/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/curso-r/munifacil/actions/workflows/check-standard.yaml)
-
+[![R-CMD-check](https://github.com/curso-r/munifacil/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/curso-r/munifacil/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 O pacote [munifacil](https://curso-r.github.io/munifacil/) tem como objetivo facilitar a união de colunas de nome de município com o respectivo código do IBGE. Isso é útil para posteriormente realizar procedimentos de `join` usando como chave a coluna do código do IBGE (como o `dplyr::left_join()`).
