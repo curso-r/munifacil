@@ -22,6 +22,14 @@ incluir_codigo_ibge <- function (data_set,
   resultado
 }
 
+#' Realizar diagnóstico do join
+#'
+#' @param resultado Tibble que é resultado do left_join entre a tabela de referência
+#' e a base de dados passada para a função `incluir_codigo_ibge()`
+#'
+#' @return A função imprime um diagnóstico na tela, informando se o join foi bem
+#' sucedido ou não. Caso o join tenha falhado, a função imprime uma lista com os
+#' municípios que não foram encontrados na tabela de referência.
 diagnostico_join <- function(resultado) {
 
   quantidade_na <- sum(is.na(resultado[["id_municipio"]]))
