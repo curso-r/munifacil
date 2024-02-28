@@ -8,8 +8,8 @@
 <meta name="description" content="O pacote munifacil tem como objetivo facilitar a união de colunas de nome de município com o respectivo código do IBGE. Isso é útil para posteriormente realizar procedimentos de join usando como chave a coluna do código do IBGE.">
 <title>Pacote para facilitar o join com nome de municipios • munifacil</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Pacote para facilitar o join com nome de municipios">
 <meta property="og:description" content="O pacote munifacil tem como objetivo facilitar a união de colunas de nome de município com o respectivo código do IBGE. Isso é útil para posteriormente realizar procedimentos de join usando como chave a coluna do código do IBGE.">
@@ -62,7 +62,8 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>O pacote <a href="https://curso-r.github.io/munifacil/" class="external-link">munifacil</a> tem como objetivo facilitar a união de colunas de nome de município com o respectivo código do IBGE. Isso é útil para posteriormente realizar procedimentos de <code>join</code> usando como chave a coluna do código do IBGE (como o <code><a href="https://rdrr.io/pkg/dplyr/man/mutate-joins.html" class="external-link">dplyr::left_join()</a></code>).</p>
+<p>O pacote <a href="https://curso-r.github.io/munifacil/" class="external-link">munifacil</a> tem como objetivo facilitar a união de colunas de nome de município com o respectivo código do IBGE.</p>
+<p>Isso é útil para posteriormente realizar procedimentos de <code>join</code> usando como chave a coluna do código do IBGE (como o <code><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">dplyr::left_join()</a></code>).</p>
 <div class="section level2">
 <h2 id="instalação">Instalação<a class="anchor" aria-label="anchor" href="#instala%C3%A7%C3%A3o"></a>
 </h2>
@@ -74,25 +75,20 @@
 <div class="section level2">
 <h2 id="exemplo-de-uso">Exemplo de uso<a class="anchor" aria-label="anchor" href="#exemplo-de-uso"></a>
 </h2>
+<p>Neste exemplo, vamos usar uma base de dados que contém o nome de municípios e a UF, e vamos incluir o código do IBGE.</p>
+<div class="section level3">
+<h3 id="preparando-os-dados">Preparando os dados<a class="anchor" aria-label="anchor" href="#preparando-os-dados"></a>
+</h3>
+<p>Primeiro, vamos carregar os pacotes necessários e importar a base de dados que usaremos neste exemplo.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Carregar o pacote munifacil</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/curso-r/munifacil" class="external-link">munifacil</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Importar uma base de dados usada neste exemplo</span></span>
-<span><span class="va">arquivo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/exemplo.csv"</span>, package <span class="op">=</span> <span class="st">"munifacil"</span><span class="op">)</span></span>
-<span><span class="va">base_de_exemplo_bruta</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/readr/man/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="va">arquivo</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 6786 Columns: 6</span></span>
-<span><span class="co">#&gt; ── Column specification ────────────────────────────────────────────────────────</span></span>
-<span><span class="co">#&gt; Delimiter: ","</span></span>
-<span><span class="co">#&gt; chr (5): Cidade abrangida, Código do IBGE - cidade abrangida, Cidade abrangi...</span></span>
-<span><span class="co">#&gt; dbl (1): Indicador Valor</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.</span></span>
-<span><span class="co">#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
-<span></span>
-<span><span class="co"># ver quais são as colunas disponíveis</span></span>
-<span><span class="co"># Nessa base, temos o nome do município, a UF, e o código do IBGE que usaremos para validar posteriormente</span></span>
-<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">base_de_exemplo_bruta</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/curso-r/munifacil" class="external-link">munifacil</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">arquivo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/exemplo.csv"</span>, package <span class="op">=</span> <span class="st">"munifacil"</span><span class="op">)</span></span>
+<span><span class="va">base_de_exemplo_bruta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="va">arquivo</span><span class="op">)</span></span></code></pre></div>
+<p>Vamos dar uma olhada na base de dados que usaremos como exemplo. Nessa base, temos o nome do município, a UF, e o código do IBGE que usaremos para validar posteriormente:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">base_de_exemplo_bruta</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 6,786</span></span>
 <span><span class="co">#&gt; Columns: 6</span></span>
 <span><span class="co">#&gt; $ `Cidade abrangida`                  &lt;chr&gt; "ABADIA DE GOIÁS", "ABADIA DOS DOU…</span></span>
@@ -100,41 +96,77 @@
 <span><span class="co">#&gt; $ `Cidade abrangida UF`               &lt;chr&gt; "GO", "MG", "GO", "MG", "PA", "CE"…</span></span>
 <span><span class="co">#&gt; $ `Tribunal UF`                       &lt;chr&gt; "GO", "MG", "GO", "MG", "PA", "CE"…</span></span>
 <span><span class="co">#&gt; $ `Tribunal município`                &lt;chr&gt; "GUAPO", "COROMANDEL", "ABADIÂNIA"…</span></span>
-<span><span class="co">#&gt; $ `Indicador Valor`                   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…</span></span>
+<span><span class="co">#&gt; $ `Indicador Valor`                   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…</span></span></code></pre></div>
+<p>Agora, vamos limpar o nome das colunas e remover uma linha que não tem informação. Alguns valores da coluna <code>codigo_do_ibge_cidade_abrangida</code> estão com mais de 7 dígitos, então vamos manter apenas os 7 primeiros dígitos (o número de dígitos utilizado pelo IBGE para identificar os municípios).</p>
+<p>Essa etapa é feita apenas para facilitar a visualização do exemplo, e não é necessária para o uso do pacote.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">base_de_exemplo</span> <span class="op">&lt;-</span> <span class="va">base_de_exemplo_bruta</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html" class="external-link">clean_names</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">cidade_abrangida</span> <span class="op">!=</span> <span class="st">"-"</span>,</span>
+<span>         <span class="va">codigo_do_ibge_cidade_abrangida</span> <span class="op">!=</span>  <span class="st">"-"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
+<span>    <span class="co"># manter apenas os 7 primeiros dígitos da coluna codigo_do_ibge_cidade_abrangida</span></span>
+<span>    codigo_do_ibge_cidade_abrangida <span class="op">=</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html" class="external-link">str_sub</a></span><span class="op">(</span><span class="va">codigo_do_ibge_cidade_abrangida</span>, <span class="fl">1</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># vamos limpar o nome das colunas</span></span>
-<span><span class="va">base_de_exemplo</span> <span class="op">&lt;-</span> <span class="va">base_de_exemplo_bruta</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">janitor</span><span class="fu">::</span><span class="fu"><a href="https://sfirke.github.io/janitor/reference/clean_names.html" class="external-link">clean_names</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="co"># buscar apenas linhas distintas segundo essas colunas</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">cidade_abrangida</span>, <span class="va">codigo_do_ibge_cidade_abrangida</span>, <span class="va">cidade_abrangida_uf</span><span class="op">)</span></span>
-<span></span>
-<span></span>
-<span><span class="co"># ver novamente a base de exemplo limpa</span></span>
-<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">base_de_exemplo</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 4,578</span></span>
-<span><span class="co">#&gt; Columns: 3</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">base_de_exemplo</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 5,534</span></span>
+<span><span class="co">#&gt; Columns: 6</span></span>
 <span><span class="co">#&gt; $ cidade_abrangida                &lt;chr&gt; "ABADIA DE GOIÁS", "ABADIA DOS DOURADO…</span></span>
 <span><span class="co">#&gt; $ codigo_do_ibge_cidade_abrangida &lt;chr&gt; "5200050", "3100104", "5200100", "3100…</span></span>
 <span><span class="co">#&gt; $ cidade_abrangida_uf             &lt;chr&gt; "GO", "MG", "GO", "MG", "PA", "CE", "P…</span></span>
+<span><span class="co">#&gt; $ tribunal_uf                     &lt;chr&gt; "GO", "MG", "GO", "MG", "PA", "CE", "P…</span></span>
+<span><span class="co">#&gt; $ tribunal_municipio              &lt;chr&gt; "GUAPO", "COROMANDEL", "ABADIÂNIA", "A…</span></span>
+<span><span class="co">#&gt; $ indicador_valor                 &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="utilizando-o-pacote-munifacil">Utilizando o pacote <code>munifacil</code>
+<a class="anchor" aria-label="anchor" href="#utilizando-o-pacote-munifacil"></a>
+</h3>
+<p>Agora, vamos usar o pacote <code>munifacil</code> para incluir o código do IBGE na base de dados.</p>
+<p>A primeira etapa necessária é limpar o nome das colunas que contém o nome do município e a UF. Isso é feito com a função <code><a href="reference/limpar_colunas.html">limpar_colunas()</a></code>.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">base_colunas_limpas</span> <span class="op">&lt;-</span> <span class="va">base_de_exemplo</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="reference/limpar_colunas.html">limpar_colunas</a></span><span class="op">(</span>col_muni <span class="op">=</span> <span class="va">cidade_abrangida</span>,</span>
+<span>                 col_uf <span class="op">=</span> <span class="va">cidade_abrangida_uf</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Usar o munifacil</span></span>
-<span></span>
-<span><span class="va">resultado</span> <span class="op">&lt;-</span> <span class="va">base_de_exemplo</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="co"># aqui é necessario indicar o nome da coluna que contém o nome das cidades, e </span></span>
-<span>  <span class="co"># o nome da coluna que contém o nome das UFs</span></span>
-<span>  <span class="fu"><a href="reference/limpar_colunas.html">limpar_colunas</a></span><span class="op">(</span>col_muni <span class="op">=</span> <span class="va">cidade_abrangida</span>, col_uf <span class="op">=</span> <span class="va">cidade_abrangida_uf</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="co"># cria uma coluna "id_municipio"</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">base_colunas_limpas</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 5,534</span></span>
+<span><span class="co">#&gt; Columns: 8</span></span>
+<span><span class="co">#&gt; $ cidade_abrangida                &lt;chr&gt; "ABADIA DE GOIÁS", "ABADIA DOS DOURADO…</span></span>
+<span><span class="co">#&gt; $ codigo_do_ibge_cidade_abrangida &lt;chr&gt; "5200050", "3100104", "5200100", "3100…</span></span>
+<span><span class="co">#&gt; $ cidade_abrangida_uf             &lt;chr&gt; "GO", "MG", "GO", "MG", "PA", "CE", "P…</span></span>
+<span><span class="co">#&gt; $ tribunal_uf                     &lt;chr&gt; "GO", "MG", "GO", "MG", "PA", "CE", "P…</span></span>
+<span><span class="co">#&gt; $ tribunal_municipio              &lt;chr&gt; "GUAPO", "COROMANDEL", "ABADIÂNIA", "A…</span></span>
+<span><span class="co">#&gt; $ indicador_valor                 &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></span>
+<span><span class="co">#&gt; $ uf_join                         &lt;chr&gt; "GO", "MG", "GO", "MG", "PA", "CE", "P…</span></span>
+<span><span class="co">#&gt; $ muni_join                       &lt;chr&gt; "abadia de goias", "abadia dos dourado…</span></span></code></pre></div>
+<p>Na base <code>base_colunas_limpas</code>, agora temos duas novas colunas: <code>uf_join</code> e <code>muni_join</code>. Essas colunas estão “limpas”, de forma que facilite a união com a tabela de “de-para” que contém os códigos do IBGE para cada município.</p>
+<p>Agora, vamos incluir o código do IBGE na base de dados. Isso é feito com a função <code><a href="reference/incluir_codigo_ibge.html">incluir_codigo_ibge()</a></code>.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">resultado</span> <span class="op">&lt;-</span> <span class="va">base_colunas_limpas</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="reference/incluir_codigo_ibge.html">incluir_codigo_ibge</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; • Ainda faltam 1 (0%) casos... São eles:</span></span>
-<span><span class="co">#&gt; • - - -</span></span>
-<span></span>
-<span><span class="co"># ver o resultado</span></span>
-<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">resultado</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 4,578</span></span>
-<span><span class="co">#&gt; Columns: 11</span></span>
+<span><span class="co">#&gt; ✔ Uhul! Deu certo!</span></span></code></pre></div>
+<p>Veja que ao usar a função <code><a href="reference/incluir_codigo_ibge.html">incluir_codigo_ibge()</a></code>, por padrão uma mensagem sobre a quantidade de resultados que não receberam o id do município é impressa. Isso é útil para verificar se existem municípios que não foram encontrados na base de “de-para”. Essa mensagem pode ser desativada com o argumento <code>diagnostico = FALSE</code>.</p>
+<p>A função <code><a href="reference/incluir_codigo_ibge.html">incluir_codigo_ibge()</a></code> adiciona as seguintes colunas na base de dados:</p>
+<ul>
+<li><p><code>id_municipio</code> - código do IBGE para cada município.</p></li>
+<li><p><code>manual</code> - a informação utilizada para unir os valores foram incluídos manualmente na tabela de de-para.</p></li>
+<li><p><code>atencao</code> - indica que é importante ter atenção nesses casos. Por exemplo: podem ser municípios com nomes similares, o mesmo nome de município em UFs diferentes, etc.</p></li>
+<li><p><code>existia_1991</code> - O municipio existia em 1991?</p></li>
+<li><p><code>existia_2000</code> - O municipio existia em 2000?</p></li>
+<li><p><code>existia_2010</code> - O municipio existia em 2010?</p></li>
+</ul>
+<p>Dentre as colunas citadas acima, a principal é a <code>id_municipio</code>, que é o código do IBGE para cada município. As outras colunas são úteis para verificar se a união foi feita corretamente.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">resultado</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 5,539</span></span>
+<span><span class="co">#&gt; Columns: 14</span></span>
 <span><span class="co">#&gt; $ cidade_abrangida                &lt;chr&gt; "ABADIA DE GOIÁS", "ABADIA DOS DOURADO…</span></span>
 <span><span class="co">#&gt; $ codigo_do_ibge_cidade_abrangida &lt;chr&gt; "5200050", "3100104", "5200100", "3100…</span></span>
 <span><span class="co">#&gt; $ cidade_abrangida_uf             &lt;chr&gt; "GO", "MG", "GO", "MG", "PA", "CE", "P…</span></span>
+<span><span class="co">#&gt; $ tribunal_uf                     &lt;chr&gt; "GO", "MG", "GO", "MG", "PA", "CE", "P…</span></span>
+<span><span class="co">#&gt; $ tribunal_municipio              &lt;chr&gt; "GUAPO", "COROMANDEL", "ABADIÂNIA", "A…</span></span>
+<span><span class="co">#&gt; $ indicador_valor                 &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></span>
 <span><span class="co">#&gt; $ uf_join                         &lt;chr&gt; "GO", "MG", "GO", "MG", "PA", "CE", "P…</span></span>
 <span><span class="co">#&gt; $ muni_join                       &lt;chr&gt; "abadia de goias", "abadia dos dourado…</span></span>
 <span><span class="co">#&gt; $ id_municipio                    &lt;chr&gt; "5200050", "3100104", "5200100", "3100…</span></span>
@@ -142,28 +174,68 @@
 <span><span class="co">#&gt; $ atencao                         &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FAL…</span></span>
 <span><span class="co">#&gt; $ existia_1991                    &lt;lgl&gt; FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, T…</span></span>
 <span><span class="co">#&gt; $ existia_2000                    &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TR…</span></span>
-<span><span class="co">#&gt; $ existia_2010                    &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TR…</span></span>
-<span></span>
-<span><span class="co"># resultados que nao receberam o id do municipio</span></span>
-<span><span class="va">resultado</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">id_municipio</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 1 × 11</span></span>
-<span><span class="co">#&gt;   cidade_abrangida codigo_do_ibge_cidade…¹ cidade_abrangida_uf uf_join muni_join</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;            &lt;chr&gt;                   &lt;chr&gt;               &lt;chr&gt;   &lt;chr&gt;    </span></span>
-<span><span class="co">#&gt; 1 -                -                       -                   -       -        </span></span>
-<span><span class="co">#&gt; # ℹ abbreviated name: ¹​codigo_do_ibge_cidade_abrangida</span></span>
-<span><span class="co">#&gt; # ℹ 6 more variables: id_municipio &lt;chr&gt;, manual &lt;lgl&gt;, atencao &lt;lgl&gt;,</span></span>
-<span><span class="co">#&gt; #   existia_1991 &lt;lgl&gt;, existia_2000 &lt;lgl&gt;, existia_2010 &lt;lgl&gt;</span></span>
-<span></span>
-<span><span class="co"># Verificando a quantidade de resultados corretos</span></span>
-<span><span class="va">resultado</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">codigo_do_ibge_cidade_abrangida</span> <span class="op">==</span> <span class="va">id_municipio</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 3 × 2</span></span>
-<span><span class="co">#&gt;   `codigo_do_ibge_cidade_abrangida == id_municipio`     n</span></span>
-<span><span class="co">#&gt;   &lt;lgl&gt;                                             &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1 FALSE                                                14</span></span>
-<span><span class="co">#&gt; 2 TRUE                                               4563</span></span>
-<span><span class="co">#&gt; 3 NA                                                    1</span></span></code></pre></div>
+<span><span class="co">#&gt; $ existia_2010                    &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TR…</span></span></code></pre></div>
+<p>Podemos remover as colunas que foram adicionadas e não são necessárias para a análise.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">resultado_limpo</span> <span class="op">&lt;-</span> <span class="va">resultado</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">manual</span>, <span class="va">atencao</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">starts_with</a></span><span class="op">(</span><span class="st">"existia"</span><span class="op">)</span>,</span>
+<span>            <span class="va">uf_join</span>, <span class="va">muni_join</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Verificando o resultado final:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">resultado_limpo</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 5,539</span></span>
+<span><span class="co">#&gt; Columns: 7</span></span>
+<span><span class="co">#&gt; $ cidade_abrangida                &lt;chr&gt; "ABADIA DE GOIÁS", "ABADIA DOS DOURADO…</span></span>
+<span><span class="co">#&gt; $ codigo_do_ibge_cidade_abrangida &lt;chr&gt; "5200050", "3100104", "5200100", "3100…</span></span>
+<span><span class="co">#&gt; $ cidade_abrangida_uf             &lt;chr&gt; "GO", "MG", "GO", "MG", "PA", "CE", "P…</span></span>
+<span><span class="co">#&gt; $ tribunal_uf                     &lt;chr&gt; "GO", "MG", "GO", "MG", "PA", "CE", "P…</span></span>
+<span><span class="co">#&gt; $ tribunal_municipio              &lt;chr&gt; "GUAPO", "COROMANDEL", "ABADIÂNIA", "A…</span></span>
+<span><span class="co">#&gt; $ indicador_valor                 &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></span>
+<span><span class="co">#&gt; $ id_municipio                    &lt;chr&gt; "5200050", "3100104", "5200100", "3100…</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="verificando-o-resultado">Verificando o resultado<a class="anchor" aria-label="anchor" href="#verificando-o-resultado"></a>
+</h3>
+<ul>
+<li>Quantidade de resultados que não receberam o ID do município:</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">resultado_limpo</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">id_municipio</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 0 × 7</span></span>
+<span><span class="co">#&gt; # ℹ 7 variables: cidade_abrangida &lt;chr&gt;, codigo_do_ibge_cidade_abrangida &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   cidade_abrangida_uf &lt;chr&gt;, tribunal_uf &lt;chr&gt;, tribunal_municipio &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   indicador_valor &lt;dbl&gt;, id_municipio &lt;chr&gt;</span></span></code></pre></div>
+<p>Todos os municípios receberam o ID do IBGE!</p>
+<ul>
+<li>Mas esses IDs estão corretos?</li>
+</ul>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Verificando a quantidade de resultados corretos</span></span>
+<span><span class="va">resultado_limpo</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>resultado_correto <span class="op">=</span> <span class="va">codigo_do_ibge_cidade_abrangida</span> <span class="op">==</span> <span class="va">id_municipio</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">resultado_correto</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>porcentagem <span class="op">=</span> <span class="fu">formattable</span><span class="fu">::</span><span class="fu"><a href="https://renkun-ken.github.io/formattable/reference/percent.html" class="external-link">percent</a></span><span class="op">(</span><span class="va">n</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">resultado_correto</th>
+<th align="right">n</th>
+<th align="right">porcentagem</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left">TRUE</td>
+<td align="right">5539</td>
+<td align="right">100.00%</td>
+</tr></tbody>
+</table>
+</div>
+</div>
+<div class="section level2">
+<h2 id="como-contribuir">Como contribuir?<a class="anchor" aria-label="anchor" href="#como-contribuir"></a>
+</h2>
+<p>Caso encontre alguma variação de escrita de nomes de municípios que não seja na tabela “de-para” atual do pacote munifacil, você pode contribuir com o pacote enviando essa sugestão.</p>
+<p>Para isso, você pode <a href="https://github.com/curso-r/munifacil/issues/new/choose" class="external-link">abrir uma issue</a>, ou enviar um <a href="https://github.com/curso-r/munifacil/blob/main/inst/depara_muni_codigo.csv" class="external-link">pull request adicionando a sugestão no arquivo <code>inst/depara_muni_codigo.csv</code></a>.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
